@@ -1,3 +1,4 @@
+const path = require("path")
 const { exec } = require("child_process")
 const {  checkNodeModulesExist, deleteNodeModules, installNodeModules }  = require("../utils")
 
