@@ -5,7 +5,9 @@ const { checkNodeModulesExist, deleteNodeModules, installNodeModules, request } 
 const checkPackageJsonModified = () => {
   return new Promise((resolve, reject) => {
     const prNumber = process.env.CODEBUILD_WEBHOOK_TRIGGER.split("/")[1]
+    console.log(`pr number is ${prNumber}`)
     const headBranch = process.env.CODEBUILD_WEBHOOK_HEAD_REF.match(/(refs\/heads\/)(.+)/)[2]
+    console.log(`headBranch is ${headBranch}`)
     request({
       method: "GET",
       hostname: "api.github.com",
@@ -17,6 +19,7 @@ const checkPackageJsonModified = () => {
       },
     }).then(res => {
       const commitNum = res.commits
+      console.log(`commitNum is ${commitNum}`)
       exec(`git log ${headBranch} -n ${commitNum} --oneline --pretty='format:' --name-only`, (error, stdout, stderr) => {
         if(error) return reject(error)
         if(stderr) return reject(stderr)
