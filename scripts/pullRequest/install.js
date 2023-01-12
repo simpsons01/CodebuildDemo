@@ -18,7 +18,7 @@ const checkPackageJsonModified = () => {
         "user-agent": "node.js",
       },
     }).then(res => {
-      const commitNum = res.commits
+      const commitNum = JSON.parse(res).commits
       console.log(`commitNum is ${commitNum}`)
       exec(`git log ${headBranch} -n ${commitNum} --oneline --pretty='format:' --name-only`, (error, stdout, stderr) => {
         if(error) return reject(error)
