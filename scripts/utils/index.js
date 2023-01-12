@@ -8,8 +8,7 @@ const request = (option, body) => {
         const chunks = [];
         res.on("data", (data) => chunks.push(data));
         res.on("end", () => {
-          let resBody = Buffer.concat(chunks).toString()
-          resolve(resBody);
+          resolve(Buffer.concat(chunks).toString());
         });
       }
     );
