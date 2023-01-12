@@ -1,5 +1,5 @@
 import ramda from "ramda"
-import { createDomText } from "./utils/dom"
+import { createDomText } from "../../utils/dom"
 const title = createDomText("h1", "this is about page")
 const subTitle = createDomText("h2", "this is about page subTitle")
 const description1 = createDomText("p", "this is description 1")
