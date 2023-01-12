@@ -6,6 +6,8 @@ cache:
 
 env:
   shell: bash
+  secrets-manager:
+    GITHUB_ACCESS_TOKEN: GITHUB_PERSONAL_ACCESS_TOKEN:value
 
 phases:
   install:
@@ -14,8 +16,12 @@ phases:
     on-failure: ABORT
     commands:
       - | 
+<<<<<<< Updated upstream
         printenv
         node scripts/install.js
+=======
+        node scripts/pullRequest/install.js
+>>>>>>> Stashed changes
   pre_build:
     on-failure: ABORT
     commands:
