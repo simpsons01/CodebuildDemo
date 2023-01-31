@@ -1,4 +1,5 @@
 import { createDomText } from "./utils/dom"
+import validator from "validator"
 const title = createDomText("h1", "this is home page")
 const subTitle = createDomText("h2", "this is home page subTitle")
 const description1 = createDomText("p", "this is home page description1")
@@ -9,6 +10,8 @@ const description5 = createDomText("p", "this is home page description5")
 const description6 = createDomText("p", "this is home page description6")
 const description7 = createDomText("p", "this is home page descriptio")
 const footer = createDomText("p", "this is home page footer tex12323t")
+
+validator.isEmail("")
 
 const app = document.querySelector("#app")
 app.appendChild(title)
