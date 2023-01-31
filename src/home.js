@@ -12,6 +12,7 @@ const description7 = createDomText("p", "this is home page descriptio")
 const footer = createDomText("p", "this is home page footer tex12323t")
 
 validator.isEmail("")
+validator.isAlpha()
 
 const app = document.querySelector("#app")
 app.appendChild(title)
