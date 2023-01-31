@@ -1,13 +1,13 @@
-import ramda from "ramda"
+import lodash from "lodash"
 import { createDomText } from "./utils/dom"
 const title = createDomText("h1", "this is about page")
 const subTitle = createDomText("h2", "this is about page subTitle")
 const description1 = createDomText("p", "this is description 1")
 const descriptionShine = createDomText("p", "this is Shine's test")
 const description2 = createDomText("p", "this is description 2")
-const description3 = createDomText("p", "this is description 3ssf44fff4")
+const description3 = createDomText("p", "this is description sss4fsssff4")
 
-const ____ = ramda.isNil(null)
+lodash.isEmpty('')
 const app = document.querySelector("#app")
 app.appendChild(title)
 app.appendChild(subTitle)
