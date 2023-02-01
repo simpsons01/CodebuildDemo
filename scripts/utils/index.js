@@ -18,12 +18,12 @@ const request = (option, body) => {
   });
 };
 
-const checkNodeModulesEmpty = (nodeModulesPath) => {
+const checkNodeModulesExist = (nodeModulesPath) => {
   return new Promise((resolve, reject) => {
     fs.readdir(nodeModulesPath, (err, files) => {
-      if(err) return reject(err)
-      const isEmpty = files.length === 0
-      resolve(isEmpty)
+      if(err) return resolve(false)
+      const hasFiles = files.length > 0
+      resolve(hasFiles)
     })
   })
 }
@@ -51,7 +51,7 @@ const installNodeModules = () => {
 
 module.exports = {
   request,
-  checkNodeModulesEmpty,
+  checkNodeModulesExist,
   deleteNodeModules,
   installNodeModules
 }

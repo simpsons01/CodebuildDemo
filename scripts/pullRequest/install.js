@@ -1,6 +1,6 @@
 const path = require("path")
 const { exec } = require("child_process")
-const { checkNodeModulesEmpty, deleteNodeModules, installNodeModules, request } = require("../utils")
+const { checkNodeModulesExist, deleteNodeModules, installNodeModules, request } = require("../utils")
 
 const checkPackageJsonModified = () => {
   return new Promise((resolve, reject) => {
@@ -34,8 +34,8 @@ const checkPackageJsonModified = () => {
 const run = async () => {
   try {
     const nodeModulesPath = path.join(__dirname, "../../node_modules")
-    const isNodeModuleEmpty = await checkNodeModulesEmpty(nodeModulesPath)
-    if(!isNodeModuleEmpty) {
+    const isNodeModuleExist = await checkNodeModulesExist(nodeModulesPath)
+    if(isNodeModuleExist) {
       const isPackageJsonModified = await checkPackageJsonModified()
       if(isPackageJsonModified) {
         console.log("package.json has been modified, delete node_modules cache and install node_modules")
@@ -47,7 +47,7 @@ const run = async () => {
         console.log("use codebuild cache node_modules")
       }
     }else {
-      console.log("node modules dir is empty, install node_modules......")
+      console.log("node modules dir does not exist, install node_modules......")
       await installNodeModules()
     }
     process.exit(0)
