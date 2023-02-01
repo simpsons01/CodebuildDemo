@@ -9,7 +9,7 @@ const description4 = createDomText("p", "this is home page description4")
 const description5 = createDomText("p", "this is home page description5")
 const description6 = createDomText("p", "this is home page description6")
 const description7 = createDomText("p", "this is home page descriptio")
-const footer = createDomText("p", "this is home page footer tex12323t")
+const footer = createDomText("p", "this is home page footer tex12t")
 
 validator.isEmail("")
 validator.isAlpha()

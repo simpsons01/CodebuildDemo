@@ -20,9 +20,9 @@ const request = (option, body) => {
 
 const checkNodeModulesExist = (nodeModulesPath) => {
   return new Promise((resolve) => {
-    fs.readdir(nodeModulesPath, (err) => {
+    fs.readdir(nodeModulesPath, (err, files) => {
       if(err) return resolve(false)
-      resolve(true)
+      resolve(files.length > 0)
     })
   })
 }
