@@ -7,7 +7,7 @@ const description2 = createDomText("p", "this is home page description2")
 const description3 = createDomText("p", "this is home page description3")
 const description4 = createDomText("p", "this is home page description4")
 const description5 = createDomText("p", "this is home page description5")
-const description6 = createDomText("p", "this is home page description6")
+const description6 = createDomText("p", "this is home page descriptisdsdfon6")
 const description7 = createDomText("p", "this is home page deswefwefcriptio")
 const footer = createDomText("p", "this is home page footer tex12wefwft")
 
