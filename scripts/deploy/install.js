@@ -19,7 +19,6 @@ const run = async () => {
   try {
     const nodeModulesPath = path.join(__dirname, "../../node_modules")
     const isNodeModuleEmpty = await checkNodeModulesEmpty(nodeModulesPath)
-    if(isNodeModuleEmpty) console.log("node modules dir is empty")
     if(!isNodeModuleEmpty) {
       const isPackageJsonModified = checkPackageJsonModified()
       if(isPackageJsonModified) {
@@ -29,10 +28,10 @@ const run = async () => {
         console.log("install node_modules......")
         await installNodeModules()
       }else {
-        console.log("use codebuild s3 cache node_modules")
+        console.log("use codebuild cache node_modules")
       }
     }else {
-      console.log("node modules does not exist, install node_modules......")
+      console.log("node modules dir is empty, install node_modules......")
       await installNodeModules()
     }
     process.exit(0)
