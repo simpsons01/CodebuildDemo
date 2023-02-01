@@ -1,6 +1,6 @@
 const https = require("https")
 const { exec } = require("child_process")
-const fs = require("fs")
+const fs = require("fs");
 
 const request = (option, body) => {
   return new Promise((resolve, reject) => {
@@ -18,11 +18,12 @@ const request = (option, body) => {
   });
 };
 
-const checkNodeModulesExist = (nodeModulesPath) => {
-  return new Promise((resolve) => {
+const checkNodeModulesEmpty = (nodeModulesPath) => {
+  return new Promise((resolve, reject) => {
     fs.readdir(nodeModulesPath, (err, files) => {
-      if(err) return resolve(false)
-      resolve(files.length > 0)
+      if(err) return reject(err)
+      const isEmpty = files.length === 0
+      resolve(isEmpty)
     })
   })
 }
@@ -50,7 +51,7 @@ const installNodeModules = () => {
 
 module.exports = {
   request,
-  checkNodeModulesExist,
+  checkNodeModulesEmpty,
   deleteNodeModules,
   installNodeModules
 }

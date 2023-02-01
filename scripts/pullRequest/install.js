@@ -1,6 +1,6 @@
 const path = require("path")
 const { exec } = require("child_process")
-const { checkNodeModulesExist, deleteNodeModules, installNodeModules, request } = require("../utils")
+const { checkNodeModulesEmpty, deleteNodeModules, installNodeModules, request } = require("../utils")
 
 const checkPackageJsonModified = () => {
   return new Promise((resolve, reject) => {
@@ -34,8 +34,9 @@ const checkPackageJsonModified = () => {
 const run = async () => {
   try {
     const nodeModulesPath = path.join(__dirname, "../../node_modules")
-    const isNodeModuleExist = await checkNodeModulesExist(nodeModulesPath)
-    if(isNodeModuleExist) {
+    const isNodeModuleEmpty = await checkNodeModulesEmpty(nodeModulesPath)
+    if(isNodeModuleEmpty) console.log("node modules dir is empty")
+    if(!isNodeModuleEmpty) {
       const isPackageJsonModified = await checkPackageJsonModified()
       if(isPackageJsonModified) {
         console.log("package.json has been modified, delete node_modules cache and install node_modules")
