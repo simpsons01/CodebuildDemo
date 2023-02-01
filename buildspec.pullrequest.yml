@@ -1,8 +1,31 @@
 version: 0.2
 
+cache:
+  paths:
+    - node_modules/**/*
+
+env:
+  shell: bash
+  secrets-manager:
+    GITHUB_ACCESS_TOKEN: GITHUB_PERSONAL_ACCESS_TOKEN:value
+
+phases:
+    install:
+      runtime-versions:
+        nodejs: 16
+      on-failure: ABORT
+      commands:
+        - |
+          node scripts/pullRequest/install.js
+
 batch:
-  build-list:
+  build-graph:
+    - identifier: initial_build
     - identifier: home_page_build
       buildspec: buildspec.pullrequest.home.yml
+      depend-on:
+        - initial_build
     - identifier: about_page_build
       buildspec: buildspec.pullrequest.about.yml
+      depend-on:
+        - initial_build
