@@ -13,6 +13,7 @@ phases:
       commands: 
         - |
           printenv
+          codebuild-breakpoint
 
 batch:
   build-graph:
