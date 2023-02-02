@@ -9,6 +9,9 @@ const checkPackageJsonModified = () => {
     exec(`git log ${start}..${end} --oneline --pretty='format:' --name-only`, (error, stdout, stderr) => {
       if(error) return reject(error)
       if(stderr) return reject(stderr)
+      console.log(`start commit sha ${start}`)
+      console.log(`end commit sha ${end}`)
+      console.log(stdout.split("\n"))
       const isPackageJsonModified = stdout.split("\n").some(str => str === "package.json")
       resolve(isPackageJsonModified)
     })
