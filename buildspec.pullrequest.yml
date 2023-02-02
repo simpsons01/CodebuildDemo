@@ -7,6 +7,13 @@ cache:
 env:
   shell: bash
 
+phases:
+   install:
+      on-failure: ABORT
+      commands: 
+        - |
+          printenv
+
 batch:
   build-graph:
     - identifier: initial_build
