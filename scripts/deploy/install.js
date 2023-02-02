@@ -9,9 +9,6 @@ const checkPackageJsonModified = () => {
     exec(`git log ${start}..${end} --oneline --pretty='format:' --name-only`, (error, stdout, stderr) => {
       if(error) return reject(error)
       if(stderr) return reject(stderr)
-      console.log(`start commit sha ${start}`)
-      console.log(`end commit sha ${end}`)
-      console.log(stdout.split("\n"))
       const isPackageJsonModified = stdout.split("\n").some(str => str === "package.json")
       resolve(isPackageJsonModified)
     })
@@ -23,7 +20,7 @@ const run = async () => {
     const nodeModulesPath = path.join(__dirname, "../../node_modules")
     const isNodeModuleExist = await checkNodeModulesExist(nodeModulesPath)
     if(isNodeModuleExist) {
-      const isPackageJsonModified = checkPackageJsonModified()
+      const isPackageJsonModified = await checkPackageJsonModified()
       if(isPackageJsonModified) {
         console.log("package.json has been modified, delete node_modules cache and install node_modules")
         console.log("delete node_modules......")
