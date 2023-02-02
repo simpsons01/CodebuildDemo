@@ -8,7 +8,7 @@ env:
   shell: bash
 
 phases:
-   before_install:
+   install:
       on-failure: ABORT
       commands: 
         - |
