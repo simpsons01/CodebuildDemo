@@ -1,7 +1,5 @@
 #!/bin/bash
 
-set -e
-
 NODE_MODULES_PATH="node_modules"
 GUTHUB_API_URL="https://api.github.com/repos/simpsons01/CodebuildDemo"
 JQ=$(which jq)
