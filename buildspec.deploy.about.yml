@@ -19,7 +19,7 @@ phases:
       on-failure: ABORT
       commands: 
         - |
-          npm run build:about
+          npm run build:about.sh
     post_build:
       on-failure: ABORT
       commands:

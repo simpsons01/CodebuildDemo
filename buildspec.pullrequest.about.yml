@@ -16,7 +16,7 @@ phases:
       on-failure: ABORT
       commands:
         - |
-          . scripts/pullRequest/install
+          . scripts/pullRequest/install.sh
     build:
       on-failure: ABORT
       commands:

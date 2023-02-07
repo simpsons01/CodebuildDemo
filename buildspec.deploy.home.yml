@@ -14,7 +14,7 @@ phases:
       on-failure: ABORT
       commands:
         - |
-          . scripts/deploy/install.js
+          . scripts/deploy/install.sh
     build:
       on-failure: ABORT
       commands:
