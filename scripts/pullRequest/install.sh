@@ -1,9 +1,10 @@
 #!/bin/bash
+
 NODE_MODULES_PATH="node_modules"
-GUTHUB_API_URL="https://api.github.com/repos/simpsons01/CodebuildDemo/"
+GUTHUB_API_URL="https://api.github.com/repos/simpsons01/CodebuildDemo"
 JQ=$(which jq)
 PR_NUMBER=$(echo $CODEBUILD_WEBHOOK_TRIGGER | cut -d "/" -f 2)
-HEAD_BRANCH=$(echo $CODEBUILD_WEBHOOK_HEAD_REF | cut -d "/" -f 3)
+HEAD_BRANCH=$(echo $CODEBUILD_WEBHOOK_HEAD_REF | sed -e 's/refs\/heads\///g')
 
 get_git_log() {
   result=$(git log $1 -n $2 --oneline --pretty='format:' --name-only)
@@ -35,14 +36,14 @@ if [ -d $NODE_MODULES_PATH ]; then
   if [ -s $NODE_MODULES_PATH ];then
      pr_result=$(get_pr $PR_NUMBER)
      commit_num=$(echo $pr_result | $JQ '.commits')
-     git_log=$(get_git_log $HEAD_BRANCH $commit_num )
+     git_log=$(get_git_log $HEAD_BRANCH $commit_num)
      grep_package_json=$(echo $git_log | grep package.json)
      if [ -z "$grep_package_json" ]; then
+      echo "package.json is not modified and use codebuild cache"
+     else
       echo "package.json is modified"
       delete_node_modules
       install_node_modules
-     else
-      echo "package.json is not modified and use codebuild cache"
      fi
   else
    echo "node_modules dir exist but empty......"
@@ -52,5 +53,3 @@ else
   echo "node_modules dir does not exist......"
   install_node_modules
 fi
-
-
