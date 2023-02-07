@@ -14,7 +14,8 @@ phases:
       on-failure: ABORT
       commands:
         - |
-          node scripts/deploy/install.js
+          chmod +x scripts/deploy/install.js
+          bash scripts/deploy/install.js
     build:
       on-failure: ABORT
       commands:
