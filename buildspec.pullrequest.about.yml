@@ -16,7 +16,7 @@ phases:
       on-failure: ABORT
       commands:
         - |
-          node scripts/pullRequest/install.js
+          . scripts/pullRequest/install.sh
     build:
       on-failure: ABORT
       commands:
