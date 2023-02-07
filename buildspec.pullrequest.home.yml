@@ -16,8 +16,7 @@ phases:
       on-failure: ABORT
       commands:
         - |
-          chmod +x scripts/pullRequest/install
-          bash scripts/pullRequest/install
+          . scripts/pullRequest/install
     build:
       on-failure: ABORT
       commands:
