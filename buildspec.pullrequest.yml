@@ -9,6 +9,7 @@ phases:
       commands: 
         - |
           printenv
+          yarn --version
 
 batch:
   build-graph:
