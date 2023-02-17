@@ -1,0 +1,28 @@
+version: 0.2
+
+cache:
+  paths:
+    - node_modules
+
+env:
+  shell: bash
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+    on-failure: ABORT
+    commands:
+      - . scripts/pullRequest/install.sh
+          
+batch:
+  build-graph:
+    - identifier: initial_build
+    - identifier: home_page_build
+      buildspec: codebuild/buildspec.pullrequest.home.yml
+      depend-on:
+        - initial_build
+    - identifier: about_page_build
+      buildspec: codebuild/buildspec.pullrequest.about.yml
+      depend-on:
+        - initial_build

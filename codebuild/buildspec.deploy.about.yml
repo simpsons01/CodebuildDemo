@@ -1,0 +1,26 @@
+version: 0.2
+
+cache:
+  paths:
+    - node_modules
+
+env:
+  shell: bash
+
+phases:  
+    install:
+      runtime-versions:
+        nodejs: 16
+      on-failure: ABORT
+      commands:
+        - yarn --version
+        - . scripts/deploy/install.sh
+    build:
+      on-failure: ABORT
+      commands: 
+        - npm run build:about
+    post_build:
+      on-failure: ABORT
+      commands:
+        - aws s3 cp dist s3://${DEPLOY_S3}  --recursive 
+        - aws cloudfront create-invalidation --distribution-id E3HZOT1NNRJHM --paths "/about/index.html"

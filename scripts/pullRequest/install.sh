@@ -23,7 +23,7 @@ delete_node_modules() {
 
 install_node_modules() {
   echo "install npm dependencies......"
-  npm install
+  yarn
 }
 
 if [ ! -x $JQ ]; then
@@ -33,7 +33,7 @@ fi
 
 if [ -d $NODE_MODULES_PATH ]; then
   echo "node_modules dir exist......"
-  if [ -s $NODE_MODULES_PATH ];then
+  if [ ! -z "$(ls -A $NODE_MODULES_PATH)" ];then
      pr_result=$(get_pr $PR_NUMBER)
      commit_num=$(echo $pr_result | $JQ '.commits')
      git_log=$(get_git_log $HEAD_BRANCH $commit_num)

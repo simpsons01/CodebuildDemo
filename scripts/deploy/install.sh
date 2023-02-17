@@ -16,12 +16,12 @@ delete_node_modules() {
 
 install_node_modules() {
   echo "install npm dependencies......"
-  npm install
+  yarn
 }
 
 if [ -d $NODE_MODULES_PATH ]; then
   echo "node_modules dir exist......"
-  if [ -s $NODE_MODULES_PATH ];then
+  if [ ! -z "$(ls -A $NODE_MODULES_PATH)" ];then
      git_log=$(get_git_log $START_COMMIT $END_COMMIT)
      grep_package_json=$(echo $git_log | grep package.json)
      if [ -z "$grep_package_json" ]; then
