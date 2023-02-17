@@ -13,17 +13,14 @@ phases:
         nodejs: 16
       on-failure: ABORT
       commands:
-        - |
-          yarn --version
-          . scripts/deploy/install.sh
+        - yarn --version
+        - . scripts/deploy/install.sh
     build:
       on-failure: ABORT
       commands:
-        - |
-          npm run build:home
+        - npm run build:home
     post_build:
       on-failure: ABORT
       commands:
-        - | 
-          aws s3 cp dist s3://${DEPLOY_S3}  --recursive 
-          aws cloudfront create-invalidation --distribution-id E3HZOT1NNRJHM --paths "/home/index.html"
+        - aws s3 cp dist s3://${DEPLOY_S3}  --recursive 
+        - aws cloudfront create-invalidation --distribution-id E3HZOT1NNRJHM --paths "/home/index.html"

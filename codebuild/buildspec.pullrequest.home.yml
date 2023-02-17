@@ -10,16 +10,13 @@ env:
     GITHUB_ACCESS_TOKEN: GITHUB_PERSONAL_ACCESS_TOKEN:value
 
 phases:
-    install:
-      runtime-versions:
-        nodejs: 16
-      on-failure: ABORT
-      commands:
-        - |
-          yarn --version
-          . scripts/pullRequest/install.sh
-    build:
-      on-failure: ABORT
-      commands:
-        - |
-          npm run build:home
+  install:
+    runtime-versions:
+      nodejs: 16
+    on-failure: ABORT
+    commands:
+      - . scripts/pullRequest/install.sh
+  build:
+    on-failure: ABORT
+    commands:
+      - npm run build:home

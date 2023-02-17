@@ -4,10 +4,12 @@ env:
   shell: bash
 
 phases:
-   install:
-      on-failure: ABORT
-      commands: 
-        - printenv
+  install:
+    runtime-versions:
+      nodejs: 16
+    on-failure: ABORT
+    commands:
+      - . scripts/pullRequest/install.sh
           
 batch:
   build-graph:
