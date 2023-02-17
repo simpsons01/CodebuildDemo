@@ -4,7 +4,7 @@ const title = createDomText("h1", "this is about page")
 const subTitle = createDomText("h2", "this is about page subTitle")
 const description1 = createDomText("p", "this is dewefewfscription 1")
 const descriptionShine = createDomText("p", "this is Shine's test")
-const description2 = createDomText("p", "this is description 2")
+const description2 = createDomText("p", "this is description 2wewefwef")
 const description3 = createDomText("p", "this is description sss4sssfeeesssff4")
 
 lodash.isEmpty('')
