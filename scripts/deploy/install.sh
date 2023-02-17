@@ -16,7 +16,7 @@ delete_node_modules() {
 
 install_node_modules() {
   echo "install npm dependencies......"
-  npm install
+  yarn
 }
 
 if [ -d $NODE_MODULES_PATH ]; then

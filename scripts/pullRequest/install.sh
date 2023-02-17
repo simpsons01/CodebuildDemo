@@ -23,7 +23,7 @@ delete_node_modules() {
 
 install_node_modules() {
   echo "install npm dependencies......"
-  npm install
+  yarn
 }
 
 if [ ! -x $JQ ]; then
