@@ -14,6 +14,7 @@ phases:
       on-failure: ABORT
       commands:
         - |
+          yarn --version
           . scripts/deploy/install.sh
     build:
       on-failure: ABORT

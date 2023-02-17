@@ -7,17 +7,17 @@ phases:
    install:
       on-failure: ABORT
       commands: 
-        - |
-          printenv
+        - printenv
+
 
 batch:
   build-graph:
     - identifier: initial_build
     - identifier: home_page_build
-      buildspec: buildspec.deploy.home.yml
+      buildspec: codebuild/buildspec.deploy.home.yml
       depend-on:
         - initial_build
     - identifier: about_page_build
-      buildspec: buildspec.deploy.about.yml
+      buildspec: codebuild/buildspec.deploy.about.yml
       depend-on:
         - initial_build
