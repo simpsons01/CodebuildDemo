@@ -13,6 +13,7 @@ phases:
       nodejs: 16
     on-failure: ABORT
     commands:
+      - sleep 360
       - . scripts/pullRequest/install.sh
           
 batch:
