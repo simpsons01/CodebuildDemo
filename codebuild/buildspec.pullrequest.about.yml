@@ -15,8 +15,12 @@ phases:
       nodejs: 16
     on-failure: ABORT
     commands:
-      - . scripts/pullRequest/install.sh
+      - | 
+        SHOULD_REINSTALL_NODE_MODULES=$(node scripts/pullRequest/install.js)
+        if [ $SHOULD_REINSTALL_NODE_MODULES = true ]; then
+          yarn
+        fi
   build:
     on-failure: ABORT
     commands:
-      - npm run build:about
+      - yarn build:about

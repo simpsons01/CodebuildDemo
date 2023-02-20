@@ -1,19 +1,4 @@
 version: 0.2
-
-cache:
-  paths:
-    - 'node_modules/**/*'
-
-env:
-  shell: bash
-
-phases:
-  install:
-    runtime-versions:
-      nodejs: 16
-    on-failure: ABORT
-    commands:
-      - . scripts/pullRequest/install.sh
           
 batch:
   build-graph:
