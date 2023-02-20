@@ -26,5 +26,11 @@ phases:
       on-failure: ABORT
       commands:
         - aws s3 cp dist s3://${DEPLOY_S3}  --recursive 
-        - aws sts assume-role --role-arn arn:aws:iam::171191418924:role/cdnInvalidationIamRole-CdnValidationRole-R024WEOGFWL9 --role-session-name TempCdnValidationRole
+        - |
+          export $(printf "AWS_ACCESS_KEY_ID=%s AWS_SECRET_ACCESS_KEY=%s AWS_SESSION_TOKEN=%s" \
+          $(aws sts assume-role \
+          --role-arn arn:aws:iam::171191418924:role/cdnInvalidationIamRole-CdnValidationRole-R024WEOGFWL9 \
+          --role-session-name TempCdnValidationRole \
+          --query "Credentials.[AccessKeyId,SecretAccessKey,SessionToken]" \
+          --output text))
         - aws cloudfront create-invalidation --distribution-id E3HZOT1NNRJHM --paths "/about/index.html"
