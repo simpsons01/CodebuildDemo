@@ -26,5 +26,5 @@ phases:
       on-failure: ABORT
       commands:
         - aws s3 cp dist s3://${DEPLOY_S3}  --recursive
-        - aws sts assume-role --role-arn arn:aws:iam::171191418924:role/codebuild-role-stack-CdnValidationRole-F30UUJUDYN78
+        - aws sts assume-role --role-arn arn:aws:iam::171191418924:role/codebuild-role-stack-CdnValidationRole-F30UUJUDYN78 --role-session-name TempCdnValidationRole
         - aws cloudfront create-invalidation --distribution-id E3HZOT1NNRJHM --paths "/home/index.html"
