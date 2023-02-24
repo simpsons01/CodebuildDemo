@@ -3,7 +3,7 @@ import { createDomText } from "./utils/dom"
 const title = createDomText("h1", "this is about page")
 const subTitle = createDomText("h2", "this is about page subTitle")
 const description1 = createDomText("p", "this is description 1")
-const descriptionShine = createDomText("p", "this is Shine's teeeest")
+const descriptionShine = createDomText("p", "this is Shine's tdddeeeest")
 const description2 = createDomText("p", "this is description 2")
 const description3 = createDomText("p", "this is description 4")
 
